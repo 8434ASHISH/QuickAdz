@@ -1,59 +1,51 @@
 function generateAd() {
   const name = document.getElementById("businessName").value.trim();
+  const tagline = document.getElementById("tagline").value.trim();
+  const cta = document.getElementById("cta").value.trim();
   const platform = document.getElementById("platform").value;
-  if (!name) return alert("Please enter your business name.");
+
+  if (!name || !tagline || !cta) return alert("Please fill all fields.");
 
   let headline = "";
   let description = "";
-  let cta = "";
 
   switch(platform) {
     case "Facebook":
-      headline = `Grow with ${name}`;
-      description = `Join thousands discovering ${name} – fast, easy, and effective!`;
-      cta = "Try Now on Facebook";
+      headline = `Boost with ${name}`;
+      description = `Start your journey with ${name} on Facebook`;
       break;
     case "Instagram":
-      headline = `${name} – Your Insta Fame Starts Here!`;
-      description = `Stylish, powerful & made for you. Discover more with ${name}`;
-      cta = "Tap to Explore";
+      headline = `Explore ${name} on Instagram`;
+      description = `${name} brings you stylish updates.`;
       break;
     case "Google Ads":
-      headline = `Need ${name}? We Got You.`;
-      description = `Search ends here. Discover premium services with ${name}.`;
-      cta = "Get Started";
+      headline = `Need ${name}? Get it on Google Ads`;
+      description = `${name} offers the best service.`;
       break;
     case "YouTube":
       headline = `Watch ${name} in Action`;
-      description = `Don’t just read, watch the magic of ${name}.`;
-      cta = "Subscribe Now";
+      description = `See ${name} in action on YouTube`;
       break;
     case "LinkedIn":
-      headline = `Level Up with ${name}`;
-      description = `Professionals trust ${name} to get results.`;
-      cta = "Connect with Us";
-      break;
-    case "Twitter":
-      headline = `${name} is Trending Now!`;
-      description = `#1 in buzz. #1 in value. ${name} is what everyone’s tweeting about.`;
-      cta = "Tweet with Us";
+      headline = `${name} – Join us on LinkedIn`;
+      description = `${name} is growing, connect with professionals!`;
       break;
     default:
-      headline = `${name} – Your Next Big Move`;
-      description = `Discover, engage, and grow with ${name}. Made for every platform.`;
-      cta = "Check it Out";
+      headline = `${name} – A Better Choice`;
+      description = `Discover the amazing benefits of ${name}.`;
   }
 
-  document.getElementById("headline").innerText = headline;
-  document.getElementById("description").innerText = description;
-  document.getElementById("cta").innerText = cta;
+  document.getElementById("adHeadline").innerText = headline;
+  document.getElementById("adDescription").innerText = description;
   document.getElementById("output").style.display = "block";
 }
 
-function copyAd() {
-  const headline = document.getElementById("headline").innerText;
-  const description = document.getElementById("description").innerText;
-  const cta = document.getElementById("cta").innerText;
-  const fullText = `Headline: ${headline}\nDescription: ${description}\nCall to Action: ${cta}`;
-  navigator.clipboard.writeText(fullText).then(() => alert("Ad copied to clipboard!"));
+function downloadAd() {
+  const adElement = document.getElementById("adPreview");
+  html2canvas(adElement).then(function(canvas) {
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL();
+    link.download = 'generated_ad.png';
+    link.click();
+  });
 }
