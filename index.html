@@ -1,82 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>QuickAdz V3 – Image Ad Generator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuickAdz – Ad Banao, Business Badhao</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(to right, #fceabb, #f8b500);
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 20px;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
     }
     h1 {
-      font-size: 3em;
-      color: #333;
-      margin-bottom: 0;
+      font-size: 3rem;
+      margin-bottom: 0.2rem;
     }
     p.tagline {
-      font-size: 1.2em;
-      color: #555;
-      margin-top: 0;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #a0d8ef;
     }
-    input, button {
-      padding: 10px;
-      font-size: 1em;
-      margin: 10px;
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
     }
-    canvas {
-      border: 2px solid #333;
-      margin-top: 20px;
+    label, select, input, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    button {
+      background: #00c6ff;
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0072ff;
+    }
+    .output {
+      margin-top: 2rem;
+    }
+    .template-preview {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+    .template-preview img {
+      width: 200px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
   </style>
 </head>
 <body>
   <h1>QuickAdz</h1>
   <p class="tagline">Ad Banao, Business Badhao</p>
+  <div class="container">
+    <label for="bizName">Business Name</label>
+    <input type="text" id="bizName" placeholder="Enter your brand or business name" />
 
-  <input type="text" id="headline" placeholder="Ad Headline"><br>
-  <input type="text" id="desc" placeholder="Ad Description"><br>
-  <input type="text" id="cta" placeholder="Ad ke Button Par Kya Likhen?"><br>
-  <button onclick="generateAd()">Preview Ad</button>
-  <button onclick="downloadAd()">Download Ad Image</button>
+    <label for="platform">Select Platform</label>
+    <select id="platform">
+      <option>Instagram</option>
+      <option>Facebook</option>
+      <option>LinkedIn</option>
+      <option>Website</option>
+      <option>WhatsApp</option>
+      <option>Poster</option>
+      <option>YouTube</option>
+      <option>Others</option>
+    </select>
 
-  <canvas id="adCanvas" width="1200" height="630"></canvas>
+    <label for="category">Ad Category</label>
+    <select id="category">
+      <option>Food / Restaurant</option>
+      <option>Fashion / Product</option>
+      <option>Consulting / Services</option>
+      <option>Event / Poster</option>
+      <option>Social Media / Reels</option>
+      <option>Travel / Wellness</option>
+      <option>Offers / Promotions</option>
+      <option>Others</option>
+    </select>
+
+    <button onclick="generateAd()">Generate My Ad</button>
+
+    <div class="output" id="output"></div>
+  </div>
 
   <script>
     function generateAd() {
-      const headline = document.getElementById('headline').value;
-      const desc = document.getElementById('desc').value;
-      const cta = document.getElementById('cta').value;
+      const name = document.getElementById("bizName").value;
+      const platform = document.getElementById("platform").value;
+      const category = document.getElementById("category").value;
 
-      const canvas = document.getElementById('adCanvas');
-      const ctx = canvas.getContext('2d');
+      const headline = `Boost your reach with ${name}`;
+      const cta = `Explore on ${platform}`;
 
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = '#000';
-      ctx.font = 'bold 50px Arial';
-      ctx.fillText(headline, 60, 100);
-
-      ctx.fillStyle = '#555';
-      ctx.font = '40px Arial';
-      ctx.fillText(desc, 60, 200);
-
-      ctx.fillStyle = '#FF5722';
-      ctx.fillRect(60, 300, 300, 80);
-
-      ctx.fillStyle = '#fff';
-      ctx.font = '40px Arial';
-      ctx.fillText(cta, 80, 355);
-    }
-
-    function downloadAd() {
-      const canvas = document.getElementById('adCanvas');
-      const link = document.createElement('a');
-      link.download = 'quickadz_ad.png';
-      link.href = canvas.toDataURL();
-      link.click();
+      document.getElementById("output").innerHTML = `
+        <h2>Generated Ad</h2>
+        <div class="template-preview">
+          <img src="https://via.placeholder.com/200x120.png?text=${encodeURIComponent(headline)}" />
+          <img src="https://via.placeholder.com/200x120.png?text=${encodeURIComponent(cta)}" />
+        </div>
+        <p><strong>Headline:</strong> ${headline}</p>
+        <p><strong>CTA:</strong> ${cta}</p>
+      `;
     }
   </script>
 </body>
