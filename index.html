@@ -1,129 +1,71 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>QuickAdz – Ad Banao, Business Badhao</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #141e30, #243b55);
+      font-family: Arial, sans-serif;
+      background: #111;
       color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      text-align: center;
+    }
+    header {
       padding: 2rem;
+      background: #222;
     }
     h1 {
       font-size: 3rem;
-      margin-bottom: 0.2rem;
+      margin: 0;
     }
     p.tagline {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: #a0d8ef;
+      font-size: 1.5rem;
+      color: #ccc;
     }
-    .container {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 2rem;
-      width: 90%;
-      max-width: 800px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      backdrop-filter: blur(10px);
-    }
-    label, select, input, button {
-      display: block;
-      width: 100%;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-    button {
-      background: #00c6ff;
-      color: white;
-      border: none;
-      padding: 0.75rem;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #0072ff;
-    }
-    .output {
-      margin-top: 2rem;
-    }
-    .template-preview {
+    .category {
       display: flex;
-      gap: 1rem;
-      overflow-x: auto;
-      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2rem;
     }
-    .template-preview img {
-      width: 200px;
+    .ad-card {
+      background: #1c1c1c;
+      margin: 1rem;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      overflow: hidden;
+      width: 300px;
+    }
+    .ad-card img {
+      width: 100%;
+      height: auto;
+    }
+    .ad-text {
+      padding: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1>QuickAdz</h1>
-  <p class="tagline">Ad Banao, Business Badhao</p>
-  <div class="container">
-    <label for="bizName">Business Name</label>
-    <input type="text" id="bizName" placeholder="Enter your brand or business name" />
-
-    <label for="platform">Select Platform</label>
-    <select id="platform">
-      <option>Instagram</option>
-      <option>Facebook</option>
-      <option>LinkedIn</option>
-      <option>Website</option>
-      <option>WhatsApp</option>
-      <option>Poster</option>
-      <option>YouTube</option>
-      <option>Others</option>
-    </select>
-
-    <label for="category">Ad Category</label>
-    <select id="category">
-      <option>Food / Restaurant</option>
-      <option>Fashion / Product</option>
-      <option>Consulting / Services</option>
-      <option>Event / Poster</option>
-      <option>Social Media / Reels</option>
-      <option>Travel / Wellness</option>
-      <option>Offers / Promotions</option>
-      <option>Others</option>
-    </select>
-
-    <button onclick="generateAd()">Generate My Ad</button>
-
-    <div class="output" id="output"></div>
-  </div>
-
-  <script>
-    function generateAd() {
-      const name = document.getElementById("bizName").value;
-      const platform = document.getElementById("platform").value;
-      const category = document.getElementById("category").value;
-
-      const headline = `Boost your reach with ${name}`;
-      const cta = `Explore on ${platform}`;
-
-      document.getElementById("output").innerHTML = `
-        <h2>Generated Ad</h2>
-        <div class="template-preview">
-          <img src="https://via.placeholder.com/200x120.png?text=${encodeURIComponent(headline)}" />
-          <img src="https://via.placeholder.com/200x120.png?text=${encodeURIComponent(cta)}" />
-        </div>
-        <p><strong>Headline:</strong> ${headline}</p>
-        <p><strong>CTA:</strong> ${cta}</p>
-      `;
-    }
-  </script>
+  <header>
+    <h1>QuickAdz</h1>
+    <p class="tagline">Ad Banao, Business Badhao</p>
+  </header>
+  <section class="category">
+    <div class="ad-card">
+      <img src="images/food1.jpg" alt="Food Ad">
+      <div class="ad-text">
+        <h2>Swad Ka King</h2>
+        <p>Order Now – Free Home Delivery!</p>
+      </div>
+    </div>
+    <div class="ad-card">
+      <img src="images/fashion1.jpg" alt="Fashion Ad">
+      <div class="ad-text">
+        <h2>Style Redefined</h2>
+        <p>Shop New Arrivals Today!</p>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
